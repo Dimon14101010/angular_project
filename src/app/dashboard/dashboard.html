@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<pre>
+{{comments | json}}
+</pre>
+
+<agm-map
+  [latitude]="lat" [longitude]="lng" [zoom]="12" style="height: 300px;">
+  <agm-marker [latitude]="lat" [longitude]="lng" [title]="title">
+    <agm-info-window>you are here !!! check position</agm-info-window>
+  </agm-marker>
+</agm-map>
+</body>
+</html>
