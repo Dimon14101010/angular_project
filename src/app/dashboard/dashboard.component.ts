@@ -9,7 +9,7 @@ import {GeolocationService} from "../geolocation.service";
 
 export class DashboardComponent implements OnInit {
   title = 'you are here';
-  venueList = [];
+  venuesList = [];
   venue: any = [];
   lat: any;
   lng: any;
@@ -19,19 +19,22 @@ export class DashboardComponent implements OnInit {
   position: any;
 
   constructor (private getVenue: ApiServiceService , private getLocation: GeolocationService) {
+
   }
   ngOnInit () {
-    this.getVenue.venueList()
+    this.getLocation.getPos();
+    this.getLocation.getVenue()
       .subscribe(venues => {this.venue = venues;
       this.comments = this.venue.response.groups[0].items[0].tips[0].text;
-      this.venueList = this.venue.response.groups[0].items;
-      console.log(this.venueList);
+      this.venuesList = this.venue.response.groups[0].items;
+      console.log(this.venuesList);
       });
     navigator.geolocation.getCurrentPosition(position2 => {position2 = position2;
     this.lat = position2.coords.latitude;
     this.lng = position2.coords.longitude;
     console.log('dashboard', position2.coords); });
   }
+
 
 }
 

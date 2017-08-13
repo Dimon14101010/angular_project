@@ -10,8 +10,8 @@ export class ApiServiceService {
   geoPosition () {
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(position => {position = position;
-      this.positoinLng = position.coords.longitude;
-      this.positoinLat = position.coords.latitude; });
+        this.positoinLng = position.coords.longitude;
+        this.positoinLat = position.coords.latitude; });
     }
   }
   venueList () {
