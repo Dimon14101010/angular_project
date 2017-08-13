@@ -22,8 +22,7 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnInit () {
-    this.getLocation.getPos();
-    this.getLocation.getVenue()
+    this.getVenue.venueList()
       .subscribe(venues => {this.venue = venues;
       this.comments = this.venue.response.groups[0].items[0].tips[0].text;
       this.venuesList = this.venue.response.groups[0].items;
