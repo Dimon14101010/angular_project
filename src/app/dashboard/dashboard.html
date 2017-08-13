@@ -7,7 +7,7 @@
 <body>
 
 <pre>
-{{comments | json}}
+
 </pre>
 
 <agm-map
@@ -16,7 +16,14 @@
     <agm-info-window>you are here !!! check position</agm-info-window>
   </agm-marker>
 </agm-map>
-<div>{{venue | json}}</div>
+
+<div *ngFor="let venues of venueList" style="background-color: aliceblue; display: inline-block; border:thin solid;width: 300px;margin: 10px 50px 10px 0px">
+  <img [src]="venues.venue.photos.groups[0].items[0].prefix +'100x100'+ venues.venue.photos.groups[0].items[0].suffix"/>
+  <p></p>
+  <h3>{{venues.venue.name}}</h3>
+  <h4>{{venues.venue.location.address}}</h4>
+  <div [style.backgroundColor]="'#'+venues.venue.ratingColor">{{venues.venue.rating}}</div>
+</div>
 
 </body>
 </html>

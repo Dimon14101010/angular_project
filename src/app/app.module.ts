@@ -13,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ApiServiceService} from "./api-service.service";
 import {AgmCoreModule} from "@agm/core";
 import {GeolocationService} from "./geolocation.service";
+import { VenueCardComponent } from './venue-card/venue-card.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {GeolocationService} from "./geolocation.service";
     DashboardComponent,
     VenueComponent,
     BottomMenuComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    VenueCardComponent
   ],
   imports: [
     BrowserModule,

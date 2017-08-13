@@ -9,11 +9,12 @@ import {GeolocationService} from "../geolocation.service";
 
 export class DashboardComponent implements OnInit {
   title = 'you are here';
-  response: string[];
+  venueList = [];
   venue: any = [];
   lat: any;
   lng: any;
   comments: any;
+
 
   position: any;
 
@@ -23,14 +24,14 @@ export class DashboardComponent implements OnInit {
     this.getVenue.venueList()
       .subscribe(venues => {this.venue = venues;
       this.comments = this.venue.response.groups[0].items[0].tips[0].text;
-      console.log(venues);
+      this.venueList = this.venue.response.groups[0].items;
+      console.log(this.venueList);
       });
     navigator.geolocation.getCurrentPosition(position2 => {position2 = position2;
     this.lat = position2.coords.latitude;
     this.lng = position2.coords.longitude;
     console.log('dashboard', position2.coords); });
   }
-
 
 }
 
