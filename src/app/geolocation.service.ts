@@ -8,8 +8,9 @@ export class GeolocationService {
   getLocate = new Promise((resolve , reject) => {
     navigator.geolocation.getCurrentPosition(position => {
       this.coordinates = position.coords;
+      resolve();
     });
-    resolve();
+
     return this.coordinates;
   })
     .then(() => {
