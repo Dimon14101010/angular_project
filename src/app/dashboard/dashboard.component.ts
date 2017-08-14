@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   lng: any;
   comments: any;
   position: any;
-
+  public query: string = 'coffee';
   constructor (private http: HttpClient , private getLocation: GeolocationService) {
 
   }
@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
           .set ('venuePhotos', '1')
           .set ('v', '20161016')
           .set ('ll', this.position.latitude + ',' + this.position.longitude)
-          .set ('query', '')
+          .set ('query', this.query)
           .set ('client_id' , 'I5RTKGWY0YNUAUZL4JWAB22EDSEC4PQF1O4SGKOPZUHEJRS1')
           .set ('client_secret' , 'ZVD4NHQL0RD5QYKSAEO4E2X3ILJ4P2EFQCE5TPHWCGMSRNOM')
         this.http.get
@@ -50,7 +50,14 @@ export class DashboardComponent implements OnInit {
     console.log('dashboard', position2.coords); });
     console.log ('map');
   }
-
+  setQuery (event: any, value: string): string {
+    this.query = value;
+  console.log('done query', this.query);
+  return this.query;
+  }
+  mapEvent (event,lat,long) {
+    console.log('cursor lat click', event.coords , lat, long)
+  }
 
 }
 

@@ -8,8 +8,16 @@
 
 <pre>
 </pre>
+<select #opt (click)="setQuery($event,opt.value)" >
 
-<agm-map
+  <option value="coffee1">coffee</option>
+  <option value="coffee2">coffee</option>
+  <option value="coffee3">coffee</option>
+  <option value="coffee4">coffee</option>
+
+</select>
+{{query}}
+<agm-map #map (centerChange)="mapEvent($event,map.latitude,map.longitude)"
   [latitude]="lat" [longitude]="lng" [zoom]="12" style="height: 300px;">
   <agm-marker [latitude]="lat" [longitude]="lng" [title]="title">
     <agm-info-window>you are here !!! check position</agm-info-window>
