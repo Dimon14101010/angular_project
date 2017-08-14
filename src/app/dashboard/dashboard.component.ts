@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit} from "@angular/core";
 import {ApiServiceService} from "../api-service.service";
 import {GeolocationService} from "../geolocation.service";
 import {AgmMap} from "@agm/core";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Component ({
   selector: 'app-dashboard',
@@ -10,21 +11,39 @@ import {AgmMap} from "@agm/core";
 
 export class DashboardComponent implements OnInit {
   title = 'you are here';
-  venuesList = [];
-  venue: any = [];
+  venuesList: any = [];
+  venue: any = {};
   lat: any;
   lng: any;
   comments: any;
-
-
   position: any;
 
-  constructor (private getVenue: ApiServiceService , private getLocation: GeolocationService) {
+  constructor (private http: HttpClient , private getLocation: GeolocationService) {
 
   }
   ngOnInit () {
-    this.position = this.getLocation.getLocate;
-    console.log('position', this.position)
+
+    this.getLocation.getLocate()
+      .then(() => {
+      this.position = this.getLocation.coordinates;
+      console.log('position', this.position);
+      })
+      .then(() => {
+        const params = new HttpParams()
+          .set ('venuePhotos', '1')
+          .set ('v', '20161016')
+          .set ('ll', this.position.latitude + ',' + this.position.longitude)
+          .set ('query', '')
+          .set ('client_id' , 'I5RTKGWY0YNUAUZL4JWAB22EDSEC4PQF1O4SGKOPZUHEJRS1')
+          .set ('client_secret' , 'ZVD4NHQL0RD5QYKSAEO4E2X3ILJ4P2EFQCE5TPHWCGMSRNOM')
+        this.http.get
+        ('https://api.foursquare.com/v2/venues/explore', {params})
+          .subscribe(response => {this.venue = response;
+          this.venuesList = this.venue.response.groups[0].items;
+          console.log('this venue', this.venue);
+          console.log('last promise', this.venuesList); });
+
+    })
     navigator.geolocation.getCurrentPosition(position2 => {position2 = position2;
     this.lat = position2.coords.latitude;
     this.lng = position2.coords.longitude;
